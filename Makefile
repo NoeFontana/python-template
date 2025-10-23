@@ -14,16 +14,16 @@ test-cov: ## Run tests with coverage report
 	uv run pytest --cov --cov-report=html --cov-report=term
 
 lint: ## Run linting checks
-	uv run ruff check . --fix
+	uv run ruff check  --fix
 
 format: ## Format code
-	uv run ruff format .
+	uv run ruff format
 
 lint-check: ## Run linting checks and fix issues
-	uv run ruff check . --no-fix
+	uv run ruff check
 
 format-check: ## Check code formatting
-	uv run ruff format --check .
+	uv run ruff format --check
 
 type-check: ## Run type checking
 	uv run pyright
