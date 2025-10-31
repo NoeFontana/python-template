@@ -7,7 +7,7 @@ This project provides a modern Python project template with best practices and t
 ## Quick Start
 
 1. Clone the repository
-2. Install dependencies with `uv sync --all-extras`
+2. Install dependencies with `uv sync --all-groups`
 3. Run tests with `uv run pytest`
 4. Start developing!
 
