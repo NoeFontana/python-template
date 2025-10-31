@@ -15,7 +15,7 @@ Thank you for your interest in contributing to this project!
 3. Install dependencies:
 
    ```bash
-   uv sync --all-extras
+   uv sync --all-groups
    ```
 
 4. Set up pre-commit hooks:

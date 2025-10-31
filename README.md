@@ -40,7 +40,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
 
 # Install development dependencies
-uv sync --all-extras
+uv sync --all-groups
 ```
 
 ## Usage
@@ -88,7 +88,7 @@ Build and serve documentation locally:
 
 ```bash
 # Install docs dependencies
-uv sync --extra docs
+uv sync --group docs
 
 # Serve documentation locally
 uv run mkdocs serve
