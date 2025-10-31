@@ -1,6 +1,6 @@
 # Python Template
 
-[![CI](https://github.com/noe-fontana/python-template/workflows/CI/badge.svg)](https://github.com/noe-fontana/python-template/actions)
+[![CI](https://github.com/NoeFontana/python-template/workflows/CI/badge.svg)](https://github.com/NoeFontana/python-template/actions)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Checked with pyright](https://microsoft.github.io/pyright/img/pyright_badge.svg)](https://microsoft.github.io/pyright/)
