@@ -111,6 +111,7 @@ select = [
     "SIM101", # duplicate-isinstance-call
     "SIM102", # collapsible-if
     "SIM103", # return-in-try-except-finally
+    "S",      # flake8-bandit
 ]
 
 [tool.ruff.format]
