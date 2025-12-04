@@ -112,7 +112,11 @@ select = [
     "SIM102", # collapsible-if
     "SIM103", # return-in-try-except-finally
     "S",      # flake8-bandit
+    "D",      # pydocstyle
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.format]
 # Like Black, use double quotes for strings.
