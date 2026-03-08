@@ -32,6 +32,10 @@ theme:
 
 plugins:
   - search
+  - social
+  - git-revision-date-localized
+  - macros
+  - minify
   - mkdocstrings:
       handlers:
         python:
