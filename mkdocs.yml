@@ -4,6 +4,14 @@ site_url: https://NoeFontana.github.io/python-template/
 repo_url: https://github.com/NoeFontana/python-template
 repo_name: NoeFontana/python-template
 
+validation:
+  nav:
+    omitted_files: warn
+    absolute_links: warn
+  links:
+    absolute_links: warn
+    unrecognized_links: warn
+
 theme:
   name: material
   palette:
