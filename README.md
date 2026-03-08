@@ -21,6 +21,13 @@ uv sync
 uv run python-template greet World
 ```
 
+## Post-Setup
+
+To ensure GitHub Actions can successfully deploy your MkDocs documentation to GitHub Pages, you must configure your repository settings:
+
+1. Navigate to **Settings -> Pages** in your new repository and set the source to **GitHub Actions**.
+2. Check that **Settings -> Actions -> General -> Workflow permissions** is set to **Read and write permissions** so the deploy job can push the `gh-pages` branch successfully.
+
 ## Application Usage
 
 The package exposes a CLI tool `python-template` with the following commands:
