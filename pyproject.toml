@@ -29,9 +29,9 @@ test = [
     "pytest>=9.0.3",
     "pytest-cov>=4.0.0",
     "pytest-xdist>=3.0.0",
-    "ruff>=0.15.11",
-    "pyright>=1.1.407",
-    "pre-commit>=3.0.0",
+    "ruff>=0.15.12",
+    "pyright>=1.1.409",
+    "pre-commit>=4.6.0",
 ]
 
 docs = [
@@ -41,7 +41,7 @@ docs = [
     "mkdocs-git-revision-date-localized-plugin>=1.2.0",
     "mkdocs-macros-plugin>=1.0.0",
     "mkdocs-minify-plugin>=0.8.0",
-    "ruff>=0.15.11",
+    "ruff>=0.15.12",
 ]
 
 [project.urls]
