@@ -26,11 +26,11 @@ dependencies = [
 
 [dependency-groups]
 test = [
-    "pytest>=9.1.0",
+    "pytest>=9.1.1",
     "pytest-cov>=4.0.0",
     "pytest-xdist>=3.0.0",
-    "ruff>=0.15.17",
-    "pyright>=1.1.410",
+    "ruff>=0.15.20",
+    "pyright>=1.1.411",
     "pre-commit>=4.6.0",
 ]
 
@@ -41,7 +41,7 @@ docs = [
     "mkdocs-git-revision-date-localized-plugin>=1.5.3",
     "mkdocs-macros-plugin>=1.0.0",
     "mkdocs-minify-plugin>=0.8.0",
-    "ruff>=0.15.17",
+    "ruff>=0.15.20",
 ]
 
 [project.urls]
