@@ -222,6 +222,12 @@ skip_covered = false
 [tool.coverage.html]
 directory = "htmlcov"
 
+# Single source of truth for spelling: pre-commit, CI, and `just spell` all
+# read this, so they cannot disagree.
+[tool.codespell]
+ignore-words = ".codespellignore"
+skip = "uv.lock,./.git,./site,./htmlcov,./.venv"
+
 [tool.commitizen]
 name = "cz_conventional_commits"
 tag_format = "$version"
