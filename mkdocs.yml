@@ -100,3 +100,10 @@ nav:
 
 watch:
   - src/python_template
+
+# Versioned deployment (ADR-0002 §"Versioning"). `mike` publishes to the
+# gh-pages branch, so the repository's Pages source must be set to
+# "Deploy from a branch -> gh-pages -> /".
+extra:
+  version:
+    provider: mike
