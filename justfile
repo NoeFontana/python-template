@@ -21,6 +21,10 @@ lint:
     uv run ruff format --check .
     uv run pyright
 
+# Check spelling. Configured by [tool.codespell] in pyproject.toml.
+spell:
+    uv run --with codespell codespell
+
 # Format and auto-fix safe lint issues.
 fmt:
     uv run ruff format .
