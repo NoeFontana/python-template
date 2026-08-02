@@ -255,9 +255,13 @@ Six gates, five of them new:
 2. **Code-example testing** — `uv run pytest --markdown-docs docs/ --no-cov`
    and `uv run pytest --doctest-modules src/ --no-cov`, wired into
    `just check`.
-3. **Link checking** — `lychee` on the rendered site for every PR touching
-   `docs/`. External links checked on a weekly schedule instead of per-PR;
-   external link checks are too flaky for a merge gate.
+3. **Link checking** — internal links on published pages are gated per-PR by
+   `mkdocs build --strict` (gate 4), which fails on any link it cannot
+   resolve. `lychee` runs weekly over the Markdown sources, covering external
+   URLs plus `docs/adr/`, `docs/engineering/` and the root Markdown files that
+   mkdocs does not build. External link checks are too flaky for a merge gate,
+   and the residue lychee would add per-PR does not justify a third-party
+   action on the job that gates every merge.
 4. **Build success** — `mkdocs build --strict`. Already in CI; kept.
 5. **Spelling** — `codespell` extended to `docs/`. Already in pre-commit;
    promoted to a CI step so it gates on PRs from forks.
