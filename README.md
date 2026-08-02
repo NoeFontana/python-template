@@ -14,10 +14,16 @@ A new Python project.
 
 ## Post-Setup
 
-To ensure GitHub Actions can successfully deploy your MkDocs documentation to GitHub Pages, you must configure your repository settings:
+Documentation is published with [`mike`](https://github.com/jimporter/mike),
+which commits the built site to a `gh-pages` branch:
 
-1. Navigate to **Settings -> Pages** in your new repository and set the source to **GitHub Actions**.
-2. Check that **Settings -> Actions -> General -> Workflow permissions** is set to **Read and write permissions** so the deploy job can push the `gh-pages` branch successfully.
+1. Push to `main` once and let the `deploy-docs` job create the `gh-pages`
+   branch.
+2. **Settings → Pages** → source **Deploy from a branch** → **`gh-pages`** →
+   **`/` (root)**. Not "GitHub Actions" — that source is for artifact-based
+   deploys, which this is not.
+3. **Settings → Actions → General → Workflow permissions** → **Read and write
+   permissions**, so the deploy job can push the branch.
 
 ## Application Usage
 

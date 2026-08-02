@@ -25,10 +25,24 @@ New here? Start with the [getting-started tutorial](tutorials/getting-started.md
 
 ## Post-Setup
 
-To ensure GitHub Actions can successfully deploy your MkDocs documentation to GitHub Pages, you must configure your repository settings:
+The documentation is published with [`mike`](https://github.com/jimporter/mike),
+which commits the built site to a `gh-pages` branch. Configure your repository
+to serve from that branch — **the deploy will silently publish nothing until
+you do**:
 
-1. Navigate to **Settings -> Pages** in your new repository and set the source to **GitHub Actions**.
-2. Check that **Settings -> Actions -> General -> Workflow permissions** is set to **Read and write permissions** so the deploy job can push the `gh-pages` branch successfully.
+1. Push to `main` once and let the `deploy-docs` job run. It creates the
+   `gh-pages` branch.
+2. Navigate to **Settings → Pages** and set the source to **Deploy from a
+   branch**, then select **`gh-pages`** and the **`/` (root)** folder.
+3. Check that **Settings → Actions → General → Workflow permissions** is set to
+   **Read and write permissions**, so the deploy job can push that branch.
+
+Step 2 is not "GitHub Actions" as the Pages source. That setting is for
+workflows that upload a Pages artifact; `mike` does not.
+
+Once configured, `main` publishes under the `latest` alias and each release tag
+publishes a `<major>.<minor>` version plus the `stable` alias, which the
+version selector in the header exposes.
 
 ## Features
 
