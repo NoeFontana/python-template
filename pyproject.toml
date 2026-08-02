@@ -32,6 +32,7 @@ test = [
     "ruff>=0.16.0",
     "pyright>=1.1.411",
     "pre-commit>=4.6.1",
+    "pytest-markdown-docs>=0.9.2",
 ]
 
 docs = [
@@ -42,6 +43,7 @@ docs = [
     "mkdocs-macros-plugin>=1.0.0",
     "mkdocs-minify-plugin>=0.8.0",
     "ruff>=0.16.0",
+    "mkdocs-redirects>=1.2.2",
 ]
 
 [project.urls]

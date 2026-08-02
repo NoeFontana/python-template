@@ -11,7 +11,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
+  # Every job below invokes `just` recipes rather than restating the commands,
+  # so the local gate and the CI gate cannot drift apart.
   test:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -29,42 +34,98 @@ jobs:
           version: "latest"
           python-version: ${{ matrix.python-version }}
 
+      - name: Install just
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just
+
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: uv sync --group test
 
-      - name: Run ruff check
-        run: uv run ruff check --output-format=github
-
-      - name: Run ruff format check
-        run: uv run ruff format --check
-
-      - name: Run type checking with pyright
-        run: uv run pyright
+      - name: Lint and type-check
+        run: just lint
 
       - name: Run tests with coverage
-        run: uv run pytest
+        run: just test
 
-  build-docs:
+      - name: Test documentation examples
+        run: just docs-test
+
+  spelling:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+
+      # Promoted out of pre-commit so it also gates PRs from forks, which do
+      # not run the contributor's local hooks.
+      - name: codespell
+        uses: codespell-project/actions-codespell@v2
+        with:
+          ignore_words_list: noe
+          ignore_words_file: .codespellignore
+          skip: ./uv.lock,./.git,./site,./htmlcov
+
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      docs: ${{ steps.filter.outputs.docs }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            docs:
+              - 'docs/**'
+              - 'mkdocs.yml'
+              - 'tools/docs/**'
+
+  build-docs:
+    needs: changes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # git-revision-date-localized needs history to date the pages.
+          fetch-depth: 0
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
           version: "latest"
 
+      - name: Install just
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just
+
       - name: Set up Python
         run: uv python install 3.11
 
       - name: Install dependencies
-        run: uv sync --group docs
+        run: uv sync --all-groups
+
+      # The generated reference pages are committed. Regenerate them and fail
+      # if the result differs from what the PR carries.
+      - name: Check generated pages are current
+        run: |
+          just docs-index
+          git diff --exit-code -- docs/reference/
 
       - name: Build documentation
-        run: uv run mkdocs build --strict
+        run: just docs-build
+
+      # Internal links only. External links are flaky, so they are checked on
+      # a schedule instead (see link-check.yml) rather than gating merges.
+      - name: Check internal links
+        if: needs.changes.outputs.docs == 'true'
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --exclude-all-private --no-progress ./site
+          fail: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

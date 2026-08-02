@@ -4,7 +4,7 @@ To onboard a new project using this template, follow this exact 3-step process:
 
 1. Click "Use this template".
 2. Clone locally.
-3. Run bash init.sh.
+3. Run `bash setup.sh`.
 
 ---
 
@@ -25,23 +25,35 @@ The package exposes a CLI tool `python-template` with sample commands.
 
 ## Development
 
-This project uses a `src` layout and strict type checking.
+This project uses a `src` layout and strict type checking. [`just`](https://github.com/casey/just)
+is the task surface; run `just` with no arguments to list every recipe. CI
+invokes the same recipes, so a green `just check` locally means a green CI.
 
-| Task           | Command                                      |
-|----------------|----------------------------------------------|
-| Test           | `uv run pytest` (or `make test`)             |
-| Lint & Format  | `uv run ruff check .` / `uv run ruff format .` |
-| Type Check     | `uv run pyright`                             |
-| Docs           | `uv run mkdocs serve`                        |
-| Run All Checks | `make check`                                 |
+| Task            | Command           |
+|-----------------|-------------------|
+| Install         | `just bootstrap`  |
+| Test            | `just test`       |
+| Lint, format & type check | `just lint` |
+| Auto-fix        | `just fmt`        |
+| Docs (serve)    | `just docs`       |
+| Test doc examples | `just docs-test` |
+| Regenerate generated pages | `just docs-index` |
+| Run all checks  | `just check`      |
 
 ### Pre-commit Hooks
 
 Enforce quality standards locally before committing:
 
 ```bash
-uv run pre-commit install
+just pre-commit
 ```
+
+### Architecture decisions
+
+Significant decisions are recorded in [`docs/adr/`](docs/adr/). Read them
+before proposing changes to structure, tooling, dependencies, or public API.
+Agents should start at [`AGENTS.md`](AGENTS.md). Create a new record with
+`just adr short-kebab-title`.
 
 ## License
 

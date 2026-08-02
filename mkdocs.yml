@@ -12,6 +12,18 @@ validation:
     absolute_links: warn
     unrecognized_links: warn
 
+# Engineering history, not user documentation (ADR-0001 §"Visibility").
+# `draft_docs` keeps these out of `mkdocs build` while still rendering them in
+# `mkdocs serve` with a DRAFT banner; `not_in_nav` suppresses the
+# `validation.nav.omitted_files` warning above.
+draft_docs: |
+  adr/
+  engineering/
+
+not_in_nav: |
+  adr/
+  engineering/
+
 theme:
   name: material
   palette:
@@ -41,6 +53,9 @@ theme:
 plugins:
   - search
   - social
+  - redirects:
+      redirect_maps:
+        reference.md: reference/api.md
   - git-revision-date-localized
   - macros
   - minify
@@ -70,7 +85,16 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - API Reference: reference.md
+  - Tutorials:
+      - Getting started: tutorials/getting-started.md
+  - How-to guides:
+      - Overview: how-to/index.md
+  - Reference:
+      - API: reference/api.md
+      - CLI: reference/cli.md
+      - Decision records: reference/adr-index.md
+  - Explanation:
+      - Architecture overview: explanation/architecture-overview.md
   - Contributing: contributing.md
   - Changelog: changelog.md
 
