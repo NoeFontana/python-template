@@ -7,9 +7,21 @@ This project provides a modern Python project template with best practices and t
 ## Quick Start
 
 1. Clone the repository
-2. Install dependencies with `uv sync --all-groups`
-3. Run tests with `uv run pytest`
+2. Install dependencies with `just bootstrap`
+3. Run the checks with `just check`
 4. Start developing!
+
+```python
+from python_template import Calculator, greet
+
+print(greet("World"))
+print(Calculator().add(2, 3))
+```
+
+This block runs as a test on every commit, along with every other fenced
+`python` block on this site — see [Contributing](contributing.md#documentation).
+
+New here? Start with the [getting-started tutorial](tutorials/getting-started.md).
 
 ## Post-Setup
 
