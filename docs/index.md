@@ -42,7 +42,8 @@ workflows that upload a Pages artifact; `mike` does not.
 
 Once configured, `main` publishes under the `latest` alias and each release tag
 publishes a `<major>.<minor>` version plus the `stable` alias, which the
-version selector in the header exposes.
+version selector in the header exposes. The site root redirects to `latest`
+until your first release tag, then to `stable`.
 
 ## Features
 
