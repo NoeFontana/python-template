@@ -29,9 +29,9 @@ test = [
     "pytest>=9.1.1",
     "pytest-cov>=4.0.0",
     "pytest-xdist>=3.0.0",
-    "ruff>=0.16.0",
+    "ruff>=0.16.5",
     "pyright>=1.1.411",
-    "pre-commit>=4.6.1",
+    "pre-commit>=4.6.2",
     "pytest-markdown-docs>=0.9.2",
 ]
 
@@ -39,10 +39,10 @@ docs = [
     "mkdocs>=1.5.0",
     "mkdocs-material[imaging]>=9.7.7",
     "mkdocstrings[python]>=1.0.6",
-    "mkdocs-git-revision-date-localized-plugin>=1.5.3",
+    "mkdocs-git-revision-date-localized-plugin>=1.5.4",
     "mkdocs-macros-plugin>=1.0.0",
     "mkdocs-minify-plugin>=0.8.0",
-    "ruff>=0.16.0",
+    "ruff>=0.16.5",
     "mkdocs-redirects>=1.2.2",
     "mike>=2.1.3",
 ]
