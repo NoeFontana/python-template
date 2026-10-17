@@ -1,26 +1,52 @@
 version: 2
 updates:
-  # Maintain GitHub Actions workflows
+  # -------------------------------------------------------------------
+  # 1. GitHub Actions Configuration
+  # -------------------------------------------------------------------
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Etc/UTC"
+    cooldown:
+      default-days: 14
+    open-pull-requests-limit: 10
+    rebase-strategy: "auto"
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "chore(ci)"
     groups:
-      # Group all Actions updates into a single PR to reduce noise
       actions:
         patterns:
           - "*"
-    # Limit open PRs to prevent flooding your PR tab
-    open-pull-requests-limit: 10
 
-  # Maintain Python dependencies using uv
+  # -------------------------------------------------------------------
+  # 2. Python / uv Configuration
+  # -------------------------------------------------------------------
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Etc/UTC"
+    cooldown:
+      default-days: 14
+    open-pull-requests-limit: 10
+    rebase-strategy: "auto"
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "chore(deps)"
     groups:
-      # Group all Python dependency updates into one weekly PR
-      dependencies:
+      python-minor-patch:
         patterns:
           - "*"
-    open-pull-requests-limit: 10
+        update-types:
+          - "minor"
+          - "patch"
